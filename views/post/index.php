@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use \yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PostSearch */
@@ -24,13 +25,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            //['class' => 'yii\grid\SerialColumn'],
+            
             //'id',
             'title:ntext',
-            'text:ntext',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            //'text:ntext',
+            [   
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия', 
+                'headerOptions' => ['width' => '80'],
+                'template'=>'{view} {update} {delete}',
+                'buttons' => [
+                'view' => function ($url,$model) {
+                    return Html::a(
+                    '<span class=" glyphicon glyphicon-eye-open ">Просмотреть</span>', 
+                    $url);
+                },
+                'update' => function ($url,$model) {
+                    return Html::a(
+                    '<span class="glyphicon glyphicon-pencil">Обновить</span>', 
+                    $url);
+                },
+                'delete' => function ($url,$model) {
+                    return Html::a(
+                    '<span class="glyphicon glyphicon-trash">Удалить</span>', 
+                    $url);
+                },
+            ],
+            ],
         ],
     ]); ?>
 

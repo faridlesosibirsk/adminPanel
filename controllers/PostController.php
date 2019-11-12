@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use app\models\Post;
 use app\models\PostSearch;
 use yii\web\Controller;
@@ -14,7 +15,7 @@ use yii\filters\VerbFilter;
  */
 class PostController extends Controller
 {
-    //public $layout = 'post';
+    public $layout = 'admin';
 
     /**
      * {@inheritdoc}
@@ -22,6 +23,15 @@ class PostController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['roleRoot'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

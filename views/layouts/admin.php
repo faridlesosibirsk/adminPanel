@@ -38,6 +38,7 @@ AppAsset::register($this);
         'items' => [
             //['label' => 'Home', 'url' => ['site/index'], 'visible' => !Yii::$app->user->isGuest],
             ['label' => 'Главная', 'url' => ['admin/index']],
+            ['label' => 'Материалы', 'url' => ['post/index'], 'visible' => Yii::$app->user->can('roleRoot')],
             ['label' => 'Студенты', 'url' => ['user/index'], 'visible' => Yii::$app->user->can('roleRoot')],
             ['label' => 'Группы', 'url' => ['group/index'], 'visible' => Yii::$app->user->can('roleRoot')],
             ['label' => 'Регистрация', 'url' => ['admin/signup'], 'visible' => Yii::$app->user->can('roleRoot')],
